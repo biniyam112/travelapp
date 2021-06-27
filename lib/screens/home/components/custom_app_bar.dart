@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../constants.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -24,6 +25,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           InkWell(
             onTap: () {},
+            borderRadius: BorderRadius.circular(50),
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

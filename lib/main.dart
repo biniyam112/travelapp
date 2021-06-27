@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        '/homeScreen': (context) => HomeScreen(),
+      },
       home: HomeScreen(),
     );
   }

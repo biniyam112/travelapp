@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/constants.dart';
+
+import 'components/day_selector_row.dart';
+import 'components/slider_and_cost_widget.dart';
+import 'components/time_selector_column.dart';
+import 'components/top_bar.dart';
 
 class SiteDetailsScreen extends StatelessWidget {
   const SiteDetailsScreen({Key? key}) : super(key: key);
@@ -88,7 +92,7 @@ class SiteDetailsScreen extends StatelessWidget {
               Positioned(
                 bottom: 0,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * .43,
+                  height: MediaQuery.of(context).size.height * .46,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.vertical(
@@ -187,58 +191,7 @@ class SiteDetailsScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 8),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: CupertinoSlider(
-                              value: 4,
-                              min: 0,
-                              max: 20,
-                              onChanged: (value) {},
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            '3 persons',
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 18,
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total : \$60',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 24,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 18, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    color: primaryColor,
-                                    borderRadius: BorderRadius.circular(40),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Book now',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 30),
+                          SliderAndCostWidget(),
                         ],
                       ),
                     ),
@@ -246,8 +199,8 @@ class SiteDetailsScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 310,
-                right: 50,
+                bottom: 330,
+                right: 40,
                 child: Container(
                   height: 66,
                   width: 66,
@@ -273,42 +226,6 @@ class SiteDetailsScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class TopBarWidget extends StatelessWidget {
-  const TopBarWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.white,
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.exit_to_app_rounded,
-              color: Colors.white,
-            ),
-          ),
-        ],
       ),
     );
   }
