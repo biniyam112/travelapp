@@ -5,6 +5,7 @@ import 'package:travel_app/constants.dart';
 
 import 'components/all_sights.dart';
 import 'components/custom_app_bar.dart';
+import 'components/custom_bottom_navigation_bar.dart';
 import 'components/page_selection_tab.dart';
 import 'components/popular_sights_list.dart';
 
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Body(),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 }
