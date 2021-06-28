@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:travel_app/models/popular_sight.dart';
 
 class PopularSightsList extends StatelessWidget {
   const PopularSightsList({
@@ -9,7 +10,7 @@ class PopularSightsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
       child: Column(
         children: [
           Align(
@@ -19,25 +20,17 @@ class PopularSightsList extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black.withOpacity(.8),
-                fontSize: 24,
+                fontSize: 20,
               ),
             ),
           ),
-          SizedBox(height: 10),
           Column(
             children: [
-              PopularSiteCard(
-                imagePath: 'assets/images/ocean_wave.jpg',
-                sightName: 'European Tour',
-              ),
-              PopularSiteCard(
-                imagePath: 'assets/images/light_house.jpg',
-                sightName: 'Atlantic shore',
-              ),
-              PopularSiteCard(
-                imagePath: 'assets/images/shore.jpg',
-                sightName: 'Rio, Brazil',
-              ),
+              ...List.generate(
+                  PopularSight.popularSights.length,
+                  (index) => PopularSiteCard(
+                        sight: PopularSight.popularSights[index],
+                      )),
             ],
           )
         ],
@@ -49,23 +42,22 @@ class PopularSightsList extends StatelessWidget {
 class PopularSiteCard extends StatelessWidget {
   const PopularSiteCard({
     Key? key,
-    required this.imagePath,
-    required this.sightName,
+    required this.sight,
   }) : super(key: key);
-  final String imagePath, sightName;
+  final PopularSight sight;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 6),
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
               offset: Offset(3, 3),
-              color: Colors.black.withOpacity(.18),
+              color: Colors.black.withOpacity(.1),
               spreadRadius: 1,
-              blurRadius: 20,
+              blurRadius: 10,
             )
           ],
           borderRadius: BorderRadius.circular(20),
@@ -76,20 +68,21 @@ class PopularSiteCard extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(22),
+                borderRadius: BorderRadius.circular(16),
                 child: Image.asset(
-                  imagePath,
+                  sight.imagePath,
                   height: 70,
                   width: 120,
+                  fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(width: 16),
+              SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    sightName,
+                    sight.sightName,
                     style: TextStyle(
                       color: Colors.black.withOpacity(.8),
                       fontSize: 20,

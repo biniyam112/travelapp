@@ -17,23 +17,26 @@ class _DaySelectorRowState extends State<DaySelectorRow> {
   Widget build(BuildContext context) {
     List<String> dayStringList = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     List<int> dayNumberList = [4, 5, 6, 7, 8, 9, 10];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        ...List.generate(
-          7,
-          (index) => DayItem(
-            dayNumber: dayNumberList[index],
-            dayString: dayStringList[index],
-            isSelected: selectedDay == index,
-            onPress: () {
-              setState(() {
-                selectedDay = index;
-              });
-            },
-          ),
-        )
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ...List.generate(
+            7,
+            (index) => DayItem(
+              dayNumber: dayNumberList[index],
+              dayString: dayStringList[index],
+              isSelected: selectedDay == index,
+              onPress: () {
+                setState(() {
+                  selectedDay = index;
+                });
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -54,31 +54,35 @@ class TabItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: 6),
       child: InkWell(
         onTap: onPress,
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: isActive ? primaryColor : Colors.black.withOpacity(.7),
-                fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
-                fontSize: 22,
+        borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  color: isActive ? primaryColor : Colors.black.withOpacity(.7),
+                  fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            SizedBox(height: 6),
-            isActive
-                ? Container(
-                    height: 5,
-                    width: 5,
-                    decoration: BoxDecoration(
-                      color: isActive ? Colors.blue[400] : Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                  )
-                : Container(),
-          ],
+              SizedBox(height: 6),
+              isActive
+                  ? Container(
+                      height: 5,
+                      width: 5,
+                      decoration: BoxDecoration(
+                        color: isActive ? Colors.blue[400] : Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                    )
+                  : Container(),
+            ],
+          ),
         ),
       ),
     );

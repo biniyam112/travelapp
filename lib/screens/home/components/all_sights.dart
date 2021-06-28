@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:travel_app/models/sights.dart';
 import 'package:travel_app/screens/siteDetails/site_details_screen.dart';
 
 import '../../../constants.dart';
@@ -12,21 +13,19 @@ class AllSights extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 6),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                '3 Sights',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black.withOpacity(.8),
-                  fontSize: 24,
-                ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              '3 Sights',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black.withOpacity(.8),
+                fontSize: 18,
               ),
-            ],
+            ),
           ),
           SizedBox(height: 10),
           SingleChildScrollView(
@@ -34,23 +33,11 @@ class AllSights extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SightItemBox(
-                  sightName: 'LightHouse \nExecursion',
-                  sightImage: 'assets/images/light_house.jpg',
-                  sightRating: 4.5,
-                  isbookmarked: true,
-                ),
-                SightItemBox(
-                  sightName: 'LightHouse \nExecursion',
-                  sightImage: 'assets/images/light_house_colored.jpg',
-                  sightRating: 2.4,
-                  isbookmarked: false,
-                ),
-                SightItemBox(
-                  sightName: 'Hawai island',
-                  sightImage: 'assets/images/nature.jpg',
-                  sightRating: 5,
-                  isbookmarked: true,
+                ...List.generate(
+                  Sight.allSights.length,
+                  (index) => SightItemBox(
+                    sight: Sight.allSights[index],
+                  ),
                 ),
               ],
             ),
@@ -64,14 +51,9 @@ class AllSights extends StatelessWidget {
 class SightItemBox extends StatelessWidget {
   const SightItemBox({
     Key? key,
-    required this.sightName,
-    required this.sightImage,
-    required this.sightRating,
-    this.isbookmarked = false,
+    required this.sight,
   }) : super(key: key);
-  final String sightName, sightImage;
-  final double sightRating;
-  final bool isbookmarked;
+  final Sight sight;
 
   @override
   Widget build(BuildContext context) {
@@ -81,26 +63,28 @@ class SightItemBox extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return SiteDetailsScreen();
+              return SiteDetailsScreen(
+                sight: sight,
+              );
             },
           ),
         );
       },
       child: Container(
         width: 300,
-        height: 240,
-        margin: EdgeInsets.symmetric(horizontal: 8),
+        height: 200,
+        margin: EdgeInsets.symmetric(horizontal: 6),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
-              sightImage,
+              sight.sightImage,
             ),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
-          padding: EdgeInsets.all(12),
+          padding: EdgeInsets.all(10),
           child: Column(
             children: [
               Align(
@@ -111,10 +95,11 @@ class SightItemBox extends StatelessWidget {
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(10),
                     child: Icon(
                       Icons.bookmark,
-                      color: isbookmarked ? primaryColor : primaryGrey,
+                      color: sight.isBookmarked ? primaryColor : primaryGrey,
+                      size: 18,
                     ),
                   ),
                 ),
@@ -128,7 +113,7 @@ class SightItemBox extends StatelessWidget {
                     glow: false,
                     itemSize: 28,
                     ignoreGestures: true,
-                    initialRating: sightRating,
+                    initialRating: sight.rating,
                     itemPadding: EdgeInsets.only(right: 5),
                     itemBuilder: (context, _) {
                       return Icon(
@@ -140,7 +125,7 @@ class SightItemBox extends StatelessWidget {
                   ),
                   SizedBox(width: 8),
                   Text(
-                    '$sightRating',
+                    '${sight.rating}',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -153,12 +138,12 @@ class SightItemBox extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  sightName,
+                  sight.sightName,
                   style: TextStyle(
-                    height: 1.1,
+                    height: 1.2,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 20,
                   ),
                 ),
               )

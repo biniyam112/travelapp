@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
@@ -11,7 +9,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -19,7 +17,7 @@ class CustomAppBar extends StatelessWidget {
             'Explore',
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: 32,
+              fontSize: 30,
               color: Colors.black.withOpacity(.8),
             ),
           ),

@@ -18,7 +18,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 70,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(
@@ -27,10 +27,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            offset: Offset(-1, 0),
+            offset: Offset(0, 0),
             spreadRadius: 1,
-            blurRadius: 10,
-            color: Colors.black.withOpacity(.2),
+            blurRadius: 6,
+            color: Colors.black.withOpacity(.1),
           ),
         ],
       ),
@@ -41,10 +41,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             4,
             (index) {
               List<IconData> bottomNavigationIcons = [
-                Icons.home,
+                CupertinoIcons.home,
                 CupertinoIcons.search,
-                CupertinoIcons.bookmark_fill,
-                Icons.settings,
+                CupertinoIcons.bookmark,
+                CupertinoIcons.settings,
               ];
               return BottomNavigationItem(
                 icon: bottomNavigationIcons[index],
@@ -77,17 +77,17 @@ class BottomNavigationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.symmetric(horizontal: 14),
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        borderRadius: BorderRadius.circular(20),
         color: isSelected ? primaryColor : Colors.transparent,
       ),
       child: IconButton(
         onPressed: onPress,
         icon: Icon(
           icon,
-          color: isSelected ? Colors.white : primaryGrey,
-          size: 30,
+          color: isSelected ? Colors.white : Colors.black,
+          size: 24,
         ),
       ),
     );

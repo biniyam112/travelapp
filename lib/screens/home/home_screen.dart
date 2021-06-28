@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:travel_app/constants.dart';
 
 import 'components/all_sights.dart';
 import 'components/custom_app_bar.dart';
@@ -34,9 +32,7 @@ class Body extends StatelessWidget {
           children: [
             CustomAppBar(),
             PageSelectionTab(),
-            SizedBox(height: 20),
             AllSights(),
-            SizedBox(height: 10),
             PopularSightsList()
           ],
         ),

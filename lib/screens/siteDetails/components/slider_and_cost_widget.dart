@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/screens/siteDetails/components/time_selector_column.dart';
 
 import '../../../constants.dart';
+import 'check_out_button.dart';
 import 'day_selector_row.dart';
 
 class SliderAndCostWidget extends StatefulWidget {
@@ -100,7 +101,6 @@ class _SliderAndCostWidgetState extends State<SliderAndCostWidget> {
             },
           ),
         ),
-        SizedBox(height: 8),
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -119,7 +119,8 @@ class _SliderAndCostWidgetState extends State<SliderAndCostWidget> {
               'Total : \$${sliderValue * 20}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 24,
+                fontSize: 20,
+                color: Colors.black87,
               ),
             ),
             InkWell(
@@ -127,7 +128,7 @@ class _SliderAndCostWidgetState extends State<SliderAndCostWidget> {
                 bookingBottomModalSheet(context);
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 18, horizontal: 24),
+                padding: EdgeInsets.symmetric(vertical: 14, horizontal: 28),
                 decoration: BoxDecoration(
                   color: primaryColor,
                   borderRadius: BorderRadius.circular(40),
@@ -138,7 +139,7 @@ class _SliderAndCostWidgetState extends State<SliderAndCostWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -152,50 +153,17 @@ class _SliderAndCostWidgetState extends State<SliderAndCostWidget> {
   }
 }
 
-class CheckOutButton extends StatelessWidget {
-  const CheckOutButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.popUntil(context, (route) => route.isFirst);
-        bookingDoneModalSheet(context);
-      },
-      borderRadius: BorderRadius.circular(40),
-      splashColor: primaryGrey.withOpacity(.5),
-      child: Container(
-        width: 200,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(40),
-          color: primaryColor,
-        ),
-        child: Center(
-          child: Text(
-            'Check out',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontSize: 22,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> bookingDoneModalSheet(BuildContext context) {
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) {
-        return Container(
-          height: MediaQuery.of(context).size.height * .55,
-          width: MediaQuery.of(context).size.width,
+Future<dynamic> bookingDoneModalSheet(BuildContext context) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    context: context,
+    builder: (context) {
+      return Container(
+        height: MediaQuery.of(context).size.height * .55,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -207,122 +175,122 @@ class CheckOutButton extends StatelessWidget {
                   Positioned(
                     child: Container(
                       padding: EdgeInsets.all(16),
-                      height: 300,
-                      width: 400,
                       decoration: BoxDecoration(
                         color: backgroundColor,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 50),
-                          Text(
-                            'Execurtion',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            'Light House',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26,
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          Row(
-                            children: [
-                              Text(
-                                'Time : ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                ' 24 Nov, 10:00 AM ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Person :  ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                '3',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text(
-                                'Duration: ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                '4',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text(
-                                'Price :  ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black45,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Text(
-                                '\$80',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              'Open Execursion',
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 50),
+                            Text(
+                              'Execurtion',
                               style: TextStyle(
-                                color: primaryColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
+                                color: Colors.black.withOpacity(.7),
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 6),
+                            Text(
+                              'Light House',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Row(
+                              children: [
+                                Text(
+                                  'Time : ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  ' 24 Nov, 10:00 AM ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  'Person :  ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  '3',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Text(
+                                  'Duration: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  '4',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Text(
+                                  'Price :  ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Text(
+                                  '\$80',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Open Execursion',
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -330,7 +298,7 @@ class CheckOutButton extends StatelessWidget {
                     bottom: 250,
                     child: Container(
                       height: 100,
-                      width: 100,
+                      width: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
@@ -344,7 +312,7 @@ class CheckOutButton extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 26),
+              SizedBox(height: 20),
               InkWell(
                 borderRadius: BorderRadius.circular(30),
                 onTap: () {
@@ -362,7 +330,7 @@ class CheckOutButton extends StatelessWidget {
                     child: Text(
                       'Done',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: primaryColor,
                       ),
@@ -373,8 +341,8 @@ class CheckOutButton extends StatelessWidget {
               SizedBox(height: 20),
             ],
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
 }

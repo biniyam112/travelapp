@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/constants.dart';
+import 'package:travel_app/models/sights.dart';
 
-import 'components/day_selector_row.dart';
 import 'components/slider_and_cost_widget.dart';
-import 'components/time_selector_column.dart';
 import 'components/top_bar.dart';
 
 class SiteDetailsScreen extends StatelessWidget {
-  const SiteDetailsScreen({Key? key}) : super(key: key);
+  const SiteDetailsScreen({Key? key, required this.sight}) : super(key: key);
+  final Sight sight;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SiteDetailsScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                      'assets/images/light_house_colored.jpg',
+                      sight.sightImage,
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -36,9 +36,9 @@ class SiteDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       TopBarWidget(),
-                      Spacer(),
+                      Spacer(flex: 2),
                       Row(
                         children: [
                           RatingBar.builder(
@@ -47,7 +47,7 @@ class SiteDetailsScreen extends StatelessWidget {
                             glow: false,
                             itemSize: 28,
                             ignoreGestures: true,
-                            initialRating: 4.5,
+                            initialRating: sight.rating,
                             itemPadding: EdgeInsets.only(right: 5),
                             itemBuilder: (context, _) {
                               return Icon(
@@ -59,7 +59,7 @@ class SiteDetailsScreen extends StatelessWidget {
                           ),
                           SizedBox(width: 8),
                           Text(
-                            '4.5',
+                            '${sight.rating}',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
@@ -76,15 +76,18 @@ class SiteDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      SizedBox(height: 10),
                       Text(
-                        'Lighthouse \n execurtion',
+                        sight.sightName,
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 30,
+                          fontSize: 26,
+                          height: 1.1,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      Spacer(),
                     ],
                   ),
                 ),
@@ -110,9 +113,9 @@ class SiteDetailsScreen extends StatelessWidget {
                           Text(
                             'Netherland Light house',
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black.withOpacity(.7),
+                              color: Colors.black.withOpacity(.78),
                             ),
                           ),
                           SizedBox(height: 22),
@@ -123,7 +126,7 @@ class SiteDetailsScreen extends StatelessWidget {
                                 'Available:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black54,
                                 ),
                               ),
@@ -131,7 +134,7 @@ class SiteDetailsScreen extends StatelessWidget {
                               RichText(
                                 text: TextSpan(
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontFamily:
                                         GoogleFonts.poppins().fontFamily,
                                     color: Colors.black87,
@@ -157,7 +160,7 @@ class SiteDetailsScreen extends StatelessWidget {
                                 'Duration:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black54,
                                 ),
                               ),
@@ -165,7 +168,7 @@ class SiteDetailsScreen extends StatelessWidget {
                               Text(
                                 '4 hours',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 17,
                                   color: Colors.black87,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -175,7 +178,7 @@ class SiteDetailsScreen extends StatelessWidget {
                                 'Price:',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.black54,
                                 ),
                               ),
@@ -183,14 +186,14 @@ class SiteDetailsScreen extends StatelessWidget {
                               Text(
                                 '\$20',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 17,
                                   color: Colors.black87,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 8),
+                          SizedBox(height: 12),
                           SliderAndCostWidget(),
                         ],
                       ),
@@ -199,11 +202,11 @@ class SiteDetailsScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 330,
+                bottom: MediaQuery.of(context).size.height * .42,
                 right: 40,
                 child: Container(
-                  height: 66,
-                  width: 66,
+                  height: 60,
+                  width: 60,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -218,7 +221,7 @@ class SiteDetailsScreen extends StatelessWidget {
                   ),
                   child: Icon(
                     Icons.bookmark,
-                    size: 32,
+                    size: 26,
                     color: Color(0xff4776F6),
                   ),
                 ),

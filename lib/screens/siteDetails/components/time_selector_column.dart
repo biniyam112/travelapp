@@ -71,7 +71,7 @@ class TimeSelectorCard extends StatelessWidget {
                 offset: Offset(4, 4),
                 blurRadius: 10,
                 spreadRadius: 1,
-                color: Colors.black.withOpacity(.2),
+                color: Colors.black.withOpacity(.1),
               ),
             ],
           ),
